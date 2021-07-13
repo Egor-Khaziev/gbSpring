@@ -1,8 +1,7 @@
-package gb.spring.hibernate;
+package gb.spring.hibernate.DoNotWork_Hibernate_II;
 
 
-import java.util.List;
-
+/*
 public class UserDao {
 
     public User findById(Long id) {
@@ -17,4 +16,4 @@ public class UserDao {
         return null;
     }
 
-}
+}*/

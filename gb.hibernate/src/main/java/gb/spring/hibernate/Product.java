@@ -1,11 +1,12 @@
 package gb.spring.hibernate;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Product")
+@Data
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,29 +19,17 @@ public class Product {
     @Column(name = "price")
     private int price;
 
-    public void setId(Long id) {
-        this.id = id;
+    public Product() {
+
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public String toString() {
+        return String.format("SimpleItem [id = %d, title = %s, price = %d]", id, title, price);
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
+    public Product(String title, int price) {
         this.title = title;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
         this.price = price;
     }
-
-
 }
