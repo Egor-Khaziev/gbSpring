@@ -15,12 +15,10 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    public User(String name) {
-        this.name = name;
-    }
-
     @Column(name = "name")
     private String name;
+
+
 
 
     @ManyToMany
@@ -34,8 +32,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, List<Product> productList) {
+    public User(String name) {
         this.name = name;
-        this.productList = productList;
     }
 }

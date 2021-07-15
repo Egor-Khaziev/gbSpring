@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS product CASCADE;
-CREATE TABLE IF NOT EXISTS product (id bigserial, title VARCHAR(255), price int, PRIMARY KEY (id));
-INSERT INTO product (title, price) VALUES
+DROP TABLE IF EXISTS products CASCADE;
+CREATE TABLE IF NOT EXISTS products (id bigserial, title VARCHAR(255), price int, PRIMARY KEY (id));
+INSERT INTO products (title, price) VALUES
 ('toy', 100),
 ('ball', 150),
 ('pen', 20),
@@ -17,7 +17,7 @@ INSERT INTO users (name) VALUES
 ('Lord of the Ring');
 
 DROP TABLE IF EXISTS users_products CASCADE;
-CREATE TABLE users_products (user_id bigint, product_id bigint, FOREIGN KEY (user_id) REFERENCES users (id), FOREIGN KEY (product_id) REFERENCES product (id));
+CREATE TABLE users_products (user_id bigint, product_id bigint, FOREIGN KEY (user_id) REFERENCES users (id), FOREIGN KEY (product_id) REFERENCES products (id));
 INSERT INTO users_products (user_id, product_id) VALUES
 (1, 2),
 (2, 1),

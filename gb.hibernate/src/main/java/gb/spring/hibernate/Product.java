@@ -7,8 +7,9 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -34,7 +35,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return String.format("SimpleItem [id = %d, title = %s, price = %d]", id, title, price);
+        return String.format("Product [id = %d, title = %s, price = %d]", id, title, price);
     }
 
     public Product(String title, int price) {

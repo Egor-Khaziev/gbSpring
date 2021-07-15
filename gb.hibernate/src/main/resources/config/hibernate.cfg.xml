@@ -14,6 +14,6 @@
         <property name="current_session_context_class">thread</property>
 
         <mapping class="gb.spring.hibernate.Product"/>
-<!--        <mapping class="gb.spring.hibernate.User"/> -->
+        <mapping class="gb.spring.hibernate.User"/>
     </session-factory>
 </hibernate-configuration>

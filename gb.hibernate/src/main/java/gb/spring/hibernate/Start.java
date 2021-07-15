@@ -33,10 +33,14 @@ public class Start {
             //find by ID: 1
             Product exmplProduct = productDao.findById(1L);
             System.out.println(exmplProduct);
-            exmplProduct.toString();
+            //exmplProduct.toString();
+            //exmplProduct.getUsers().stream().forEach(x-> System.out.println(x));
 
             User exmplUser = session.get(User.class, 1L);
             System.out.println(exmplUser);
+            exmplUser.toString();
+            exmplUser.getProductList().stream().forEach(x-> System.out.println(x));
+
 
             session.getTransaction().commit();
 
