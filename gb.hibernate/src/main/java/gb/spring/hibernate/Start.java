@@ -35,8 +35,8 @@ public class Start {
             System.out.println(exmplProduct);
             exmplProduct.toString();
 
-//            User exmplUser = session.get(User.class, 1L);
-//            System.out.println(exmplUser);
+            User exmplUser = session.get(User.class, 1L);
+            System.out.println(exmplUser);
 
             session.getTransaction().commit();
 
