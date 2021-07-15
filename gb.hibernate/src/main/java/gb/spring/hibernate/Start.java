@@ -1,52 +1,51 @@
 package gb.spring.hibernate;
 
+import gb.spring.hibernate.model.Product;
+import gb.spring.hibernate.model.User;
+import gb.spring.hibernate.repository.ProductDao;
+import gb.spring.hibernate.services.ProductService;
+import gb.spring.hibernate.services.UserService;
+import gb.spring.hibernate.utils.UtilSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.stream.Collectors;
 
-
+@Component
 public class Start {
 
-    private SessionFactory factory;
-    private ProductDao productDao;
+    Session session;
+    UtilSessionFactory utilSessionFactory;
+    UserService userService;
+    ProductService productService;
 
-    public Start() {
-        factory = new Configuration()
-                .configure("config/hibernate.cfg.xml")
-                .buildSessionFactory();
-        try (Session session = factory.getCurrentSession()) {
+    @PostConstruct
+    private void init() throws IOException {
+        //add products to db
+        session.beginTransaction();
+        String sql = Files.lines(Paths.get("import.sql")).collect(Collectors.joining(" "));
+        session.createNativeQuery(sql).executeUpdate();
+        session.getTransaction().commit();
 
-            session.beginTransaction();
+        userService.userProductListByUserId(1L);
+        productService.userListByProductId(1L);
 
-            //add products to db
-            String sql = Files.lines(Paths.get("import.sql")).collect(Collectors.joining(" "));
-            session.createNativeQuery(sql).executeUpdate();
+    }
+    @Autowired
+    public Start(UserService userService, ProductService productService, UtilSessionFactory sessionFactory) throws Exception {
 
-            productDao = new ProductDao(factory);
-            productDao.setSession(session);
-
-
-            //find by ID: 1
-            Product exmplProduct = productDao.findById(1L);
-            System.out.println(exmplProduct);
-            //exmplProduct.toString();
-            //exmplProduct.getUsers().stream().forEach(x-> System.out.println(x));
-
-            User exmplUser = session.get(User.class, 1L);
-            System.out.println(exmplUser);
-            exmplUser.toString();
-            exmplUser.getProductList().stream().forEach(x-> System.out.println(x));
-
-
-            session.getTransaction().commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.utilSessionFactory = sessionFactory;
+        this.productService = productService;
+        this.session = sessionFactory.getSession();
+        this.userService = userService;
 
     }
 

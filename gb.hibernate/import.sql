@@ -9,8 +9,8 @@ INSERT INTO products (title, price) VALUES
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users (id bigserial PRIMARY KEY, name VARCHAR(255));
 INSERT INTO users (name) VALUES
-('Queen Joanna'),
-('dr.Smith'),
+('British Queen'),
+('dr.Jekyll'),
 ('King Albert'),
 ('Harry Potter'),
 ('Da Vinci'),

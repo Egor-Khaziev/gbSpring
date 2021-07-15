@@ -1,5 +1,6 @@
-package gb.spring.hibernate;
+package gb.spring.hibernate.model;
 
+import gb.spring.hibernate.model.User;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,13 +22,13 @@ public class Product {
     @Column(name = "price")
     private int price;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_products",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<User> users;
+    private List<User> userList;
 
     public Product() {
 

@@ -13,7 +13,7 @@
         <property name="show_sql">true</property>
         <property name="current_session_context_class">thread</property>
 
-        <mapping class="gb.spring.hibernate.Product"/>
-        <mapping class="gb.spring.hibernate.User"/>
+        <mapping class="gb.spring.hibernate.model.Product"/>
+        <mapping class="gb.spring.hibernate.model.User"/>
     </session-factory>
 </hibernate-configuration>

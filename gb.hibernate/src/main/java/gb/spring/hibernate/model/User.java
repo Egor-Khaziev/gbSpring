@@ -1,4 +1,4 @@
-package gb.spring.hibernate;
+package gb.spring.hibernate.model;
 
 import lombok.Data;
 
@@ -18,10 +18,7 @@ public class User {
     @Column(name = "name")
     private String name;
 
-
-
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_products",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -30,6 +27,11 @@ public class User {
     private List<Product> productList;
 
     public User() {
+    }
+
+    @Override
+    public String toString() {
+        return String.format("User: [id = %d, name = %s]", id, name);
     }
 
     public User(String name) {
