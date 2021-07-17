@@ -2,48 +2,56 @@ package gb.spring.market.springmarket.repository;
 
 import gb.spring.market.springmarket.model.Product;
 import gb.spring.market.springmarket.utils.NotFoundProductException;
-import org.springframework.stereotype.Component;
+import gb.spring.market.springmarket.utils.UtilSessionFactory;
+import lombok.Data;
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Repository
+@Data
 public class ProductRepository {
 
-    private Long lastArticle;
-    private List<Product> list;
+    UtilSessionFactory sessionFactory;
 
-    public List<Product> getList() {
-        return Collections.unmodifiableList(list);
+    @Autowired
+    public ProductRepository(UtilSessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
-    @PostConstruct
-    public void init(){
-        list = new ArrayList<>();
-
-        for (int i = 0; i < 5; i++) {
-            int cost = (i == 0) ? (cost = 50) : (cost = i * 100);
-            list.add(new Product(i, "product " + i, cost));
+    public Product findById(Long id) {
+        Session session = sessionFactory.getSession();
+        session.beginTransaction();
+        Product product = session.get(Product.class, id);
+        session.getTransaction().commit();
+        if(product!=null) {
+            return product;
         }
-
-        //артикул последнего нового товара
-        lastArticle = 4L;
+        else {throw new NotFoundProductException();}
     }
 
-    public void createNewProduct(String title, int cost){
-        list.add(new Product(++lastArticle,title,cost));
+    public List<Product> findAll() {
+        Session session = sessionFactory.getSession();
+        session.beginTransaction();
+        List<Product> productList = session.createQuery("FROM Product").getResultList();
+        session.getTransaction().commit();
+        return productList;
     }
 
-    public Product getProductByID(long filterID){
-        for (Product x: list) {
-            if (x.getId()==filterID){
-                return x;
-            }
-        }
-        throw new NotFoundProductException();
+    public void deleteById(Long id) {
+        Session session = sessionFactory.getSession();
+        session.beginTransaction();
+        session.delete(findById(id));
+        session.getTransaction().commit();
     }
 
+    public void saveOrUpdate(Product product) {
+        Session session = sessionFactory.getSession();
+        session.beginTransaction();
+        session.saveOrUpdate(product);
+        session.getTransaction().commit();
+
+    }
 }

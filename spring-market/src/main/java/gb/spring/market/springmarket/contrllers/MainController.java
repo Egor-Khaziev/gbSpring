@@ -3,6 +3,7 @@ package gb.spring.market.springmarket.contrllers;
 import gb.spring.market.springmarket.repository.ProductRepository;
 import gb.spring.market.springmarket.services.CartService;
 import gb.spring.market.springmarket.services.ProductService;
+import gb.spring.market.springmarket.utils.UtilSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ public class MainController {
     CartService cartService;
 
     @Autowired
-    public MainController(ProductService productService, CartService cartService) {
+    public MainController(ProductService productService, CartService cartService, UtilSessionFactory sessionFactory) {
         this.productService = productService;
         this.cartService = cartService;
     }

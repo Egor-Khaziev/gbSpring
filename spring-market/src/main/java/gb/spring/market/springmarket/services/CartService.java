@@ -1,29 +1,35 @@
 package gb.spring.market.springmarket.services;
 
+import gb.spring.market.springmarket.model.Cart;
 import gb.spring.market.springmarket.repository.CartRepository;
-import gb.spring.market.springmarket.utils.NotFoundProductException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public class CartService {
 
+    Cart cart;
     CartRepository cartRepository;
 
     @Autowired
-    public CartService(CartRepository cartRepository) {
+    public CartService(Cart cart, CartRepository cartRepository) {
+        this.cart = cart;
         this.cartRepository = cartRepository;
     }
 
-    public void addProduct(Long id, int cost){
-        cartRepository.addProduct(id,cost);
+    public Map<Long, Integer> getCartList(){
+        return cartRepository.getCartList();
     }
-
-    public void removeProduct(Long id, int cost){
-        cartRepository.removeProduct(id,cost);
+    public void addProductToCart(Long id, int cost){
+        cartRepository.addProductToCart(id,cost);
     }
-    public void clear (){
-        cartRepository.clear();
+    public void removeProductToCart(Long id, int cost){
+        cartRepository.removeProductToCart(id,cost);
+    }
+    public void clearCart (){
+        cartRepository.clearCart();
     }
 
 }

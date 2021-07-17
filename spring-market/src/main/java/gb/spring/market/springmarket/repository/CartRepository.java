@@ -1,6 +1,5 @@
 package gb.spring.market.springmarket.repository;
 
-import gb.spring.market.springmarket.model.Product;
 import gb.spring.market.springmarket.utils.NotFoundProductException;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Component
@@ -24,11 +22,11 @@ public class CartRepository {
         amount = 0;
     }
 
-    public Map<Long, Integer> getList() {
+    public Map<Long, Integer> getCartList() {
         return Collections.unmodifiableMap(list);
     }
 
-    public void addProduct(Long id, int cost){
+    public void addProductToCart(Long id, int cost){
         if(list.containsKey(id)) {
             list.replace(id, list.get(id) + 1);
             amount = amount + cost;
@@ -38,7 +36,7 @@ public class CartRepository {
         amount = amount + cost;
     }
 
-    public void removeProduct(Long id, int cost){
+    public void removeProductToCart(Long id, int cost){
         if(list.containsKey(id) && list.get(id)>1) {
             list.replace(id, list.get(id) -1);
             amount = amount - cost;
@@ -51,7 +49,7 @@ public class CartRepository {
         }
         throw new NotFoundProductException();
     }
-    public void clear (){
+    public void clearCart (){
         amount = 0;
         list.clear();
     }
