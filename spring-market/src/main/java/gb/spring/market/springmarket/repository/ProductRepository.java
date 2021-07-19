@@ -41,9 +41,10 @@ public class ProductRepository {
     }
 
     public void deleteById(Long id) {
+        Product product = findById(id);
         Session session = sessionFactory.getSession();
         session.beginTransaction();
-        session.delete(findById(id));
+        session.delete(product);
         session.getTransaction().commit();
     }
 

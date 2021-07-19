@@ -39,9 +39,10 @@ public class MainController {
     }
 
     @GetMapping("/delete/{id}")
-    public String saveNewProduct(Model model, @PathVariable long id){
+    public String deleteProduct(Model model, @PathVariable long id){
+        model.addAttribute("product", productService.getProductByID(id));
         productService.deleteById(id);
-        return "redirect:/";
+        return "delete";
     }
 
     @GetMapping("/")
