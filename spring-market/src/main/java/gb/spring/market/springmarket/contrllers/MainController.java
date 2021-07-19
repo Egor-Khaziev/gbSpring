@@ -38,11 +38,11 @@ public class MainController {
         return "productinfo";
     }
 
-//    @PostMapping("/new_product")
-//    public String saveNewProduct(@RequestParam String title, @RequestParam int cost){
-//        productService.createNewProduct(title, cost);
-//        return "redirect:/";
-//    }
+    @GetMapping("/delete/{id}")
+    public String saveNewProduct(Model model, @PathVariable long id){
+        productService.deleteById(id);
+        return "redirect:/";
+    }
 
     @GetMapping("/")
     public String main(Model model){
