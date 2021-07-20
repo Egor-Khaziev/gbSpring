@@ -23,11 +23,11 @@ public class UtilSessionFactory {
                 .configure("config/hibernate.cfg.xml")
                 .buildSessionFactory();
 
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
-        String sql = Files.lines(Paths.get("import.sql")).collect(Collectors.joining(" "));
-        session.createNativeQuery(sql).executeUpdate();
-        session.getTransaction().commit();
+//        Session session = factory.getCurrentSession();
+//        session.beginTransaction();
+//        String sql = Files.lines(Paths.get("V1__init.sql")).collect(Collectors.joining(" "));
+//        session.createNativeQuery(sql).executeUpdate();
+//        session.getTransaction().commit();
     }
 
     public Session getSession() {

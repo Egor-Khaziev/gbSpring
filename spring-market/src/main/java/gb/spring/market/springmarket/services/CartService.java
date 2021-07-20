@@ -2,22 +2,19 @@ package gb.spring.market.springmarket.services;
 
 import gb.spring.market.springmarket.model.Cart;
 import gb.spring.market.springmarket.repository.CartRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class CartService {
 
-    Cart cart;
-    CartRepository cartRepository;
+    private final Cart cart;
+    private final CartRepository cartRepository;
 
-    @Autowired
-    public CartService(Cart cart, CartRepository cartRepository) {
-        this.cart = cart;
-        this.cartRepository = cartRepository;
-    }
 
     public Map<Long, Integer> getCartList(){
         return cartRepository.getCartList();

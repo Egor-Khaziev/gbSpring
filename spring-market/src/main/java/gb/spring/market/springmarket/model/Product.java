@@ -1,6 +1,7 @@
 package gb.spring.market.springmarket.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "products")
+@NoArgsConstructor
 public class Product {
 
     @Id
@@ -31,15 +33,12 @@ public class Product {
     )
     private List<User> userList;
 
-    public Product() {
-
-    }
-
     @Override
     public String toString() {
         return String.format("Product [id = %d, title = %s, price = %d]", id, title, cost);
     }
 
+    //test and kill
     public Product(String title, int cost) {
         this.title = title;
         this.cost = cost;

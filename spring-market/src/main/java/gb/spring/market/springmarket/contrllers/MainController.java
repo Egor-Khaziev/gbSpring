@@ -1,6 +1,5 @@
 package gb.spring.market.springmarket.contrllers;
 
-import gb.spring.market.springmarket.repository.ProductRepository;
 import gb.spring.market.springmarket.services.CartService;
 import gb.spring.market.springmarket.services.ProductService;
 import gb.spring.market.springmarket.utils.UtilSessionFactory;
