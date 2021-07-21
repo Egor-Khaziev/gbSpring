@@ -1,5 +1,6 @@
 package gb.spring.market.springmarket.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,6 +27,7 @@ public class Product {
     private int cost;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(
             name = "users_products",
             joinColumns = @JoinColumn(name = "product_id"),

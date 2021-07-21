@@ -14,17 +14,14 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public List<Product> getProductList(){
-        //return productRepository.getList();
         return productRepository.findAll();
     }
 
     public void createNewProduct(String title, int cost){
-        //productRepository.createNewProduct(title,cost);
         productRepository.save(new Product(title,cost));
     }
 
-    public Product getProductByID(long id){
-        //return  productRepository.getProductByID(id);
+    public Product getProductByID(Long id){
         return productRepository.findById(id).get();
     }
 
