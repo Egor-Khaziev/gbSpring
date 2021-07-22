@@ -31,9 +31,13 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
     $scope.deleteProduct = function (id){
         $http({
             url: 'http://localhost:8080/market/delete/' + id,
-            method: 'GET'
+            method: 'GET',
+            params: {},
+        }).then(function (response) {
+            alert('product was delete');
+            $scope.loadProducts();
         });
-        $scope.loadProducts();
+
     }
 
     $scope.showProductInfo = function (productIndex) {
