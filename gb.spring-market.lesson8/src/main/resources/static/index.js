@@ -10,19 +10,20 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         });
     };
 
-    // $scope.loadPage = function (pageIndex = 1) {
-    //     $http({
-    //         url: 'http://localhost:8080/market/products_page',
-    //         method: 'GET',
-    //         params: {
-    //             'p': pageIndex
-    //         }
-    //     }).then(function (response) {
-    //         console.log(response);
-    //     });
-    // };
-    //
-    // $scope.counterValue = 1;
+    $scope.loadPage = function (pageIndex = 1) {
+        $http({
+            url: 'http://localhost:8080/market/products_page',
+            method: 'GET',
+            params: {
+                'p': pageIndex
+            }
+        }).then(function (response) {
+            console.log(response);
+            $scope.products = response.data.content;
+        });
+    };
+
+    $scope.counterValue = 1;
 
     $scope.clickIncrementButton = function () {
         $scope.counterValue += 1;
@@ -49,5 +50,5 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         });
     };
 
-    $scope.loadProducts();
+    $scope.loadPage();
 });

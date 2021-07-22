@@ -3,6 +3,7 @@ package gb.spring.market.springmarket.contrllers;
 import gb.spring.market.springmarket.model.Product;
 import gb.spring.market.springmarket.services.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +31,13 @@ public class MainRestController {
     }
 
     @PostMapping("/new_product")
-    public String saveNewProduct(@RequestParam(name = "t") String title, @RequestParam(name = "c") int cost){
+    public String saveNewProduct(@RequestParam(name = "title") String title, @RequestParam(name = "cost") int cost){
         productService.createNewProduct(title, cost);
         return "it's ok :)";
     }
 
+    @GetMapping("/products_page")
+    public Page<Product> productPage(@RequestParam(name = "p") int p){
+        return productService.findPage(p-1,10);
+    }
 }
