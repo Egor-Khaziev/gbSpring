@@ -1,5 +1,6 @@
 package gb.spring.market.springmarket.contrllers;
 
+import gb.spring.market.springmarket.dto.CategoryDTO;
 import gb.spring.market.springmarket.model.Category;
 import gb.spring.market.springmarket.services.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping
-    public List<Category> getAllCategory(){
+    public List<CategoryDTO> getAllCategory(){
         return categoryService.getCategoryList();
     }
 
