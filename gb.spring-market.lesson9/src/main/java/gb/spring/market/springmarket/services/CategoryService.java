@@ -22,20 +22,21 @@ public class CategoryService {
     public List<CategoryDTO> getCategoryList(){
 
         List<Category> listEntity = categoryRepository.findAll();
-        List<CategoryDTO> listDTO = new ArrayList<>().listEntity
+        List<CategoryDTO> listDTO = new ArrayList<>();
 
-//        return (List<CategoryDTO>) categoryRepository.findAll().stream().map(new Function<Category, CategoryDTO>() {
-//
-//            @Override
-//            public CategoryDTO apply(Category entity) {
-//                CategoryDTO dto = new CategoryDTO(entity);
-//                return dto;
-//            }});
+        for (Category category: listEntity) {
+            listDTO.add(new CategoryDTO(category));
+        }
 
+        return listDTO;
     }
 
-    public Category createNewCategory(Category newCategory){
-        return categoryRepository.save(newCategory);
+    public CategoryDTO createNewCategory(Category newCategory){
+        return new CategoryDTO(categoryRepository.save(newCategory));
+    }
+
+    public CategoryDTO getCategoryDTOByID(Long id){
+        return  new CategoryDTO(categoryRepository.findById(id).get());
     }
 
     public Category getCategoryByID(Long id){
