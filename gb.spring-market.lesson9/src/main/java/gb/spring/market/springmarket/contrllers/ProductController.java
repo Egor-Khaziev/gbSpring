@@ -29,11 +29,11 @@ public class ProductController {
     }
 
     @PostMapping("/new_product")
-    public ProductDTO saveNewProduct(@RequestParam(name = "title") String title, @RequestParam(name = "price") int price, @RequestParam(name = "category") long category){
+    public ProductDTO saveNewProduct(@RequestBody ProductDTO newProductDTO){
         Product newProduct = new Product();
-        newProduct.setTitle(title);
-        newProduct.setPrice(price);
-        newProduct.setCategory(categoryService.getCategoryByID(category));
+        newProduct.setTitle(newProductDTO.getTitle());
+        newProduct.setPrice(newProductDTO.getPrice());
+        newProduct.setCategory(categoryService.getCategoryByTitle(newProductDTO.getCategory()));
 
         return productService.createNewProduct(newProduct);
     }

@@ -43,9 +43,12 @@ public class CategoryService {
         return categoryRepository.findById(id).get();
     }
 
+    public Category getCategoryByTitle(String title){
+        return categoryRepository.findCategoryByTitleEquals(title);
+    }
+
     public void deleteById(long id){
         categoryRepository.deleteById(id);
     }
-
 
 }
