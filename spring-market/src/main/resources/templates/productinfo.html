@@ -1,0 +1,40 @@
+<head>
+    <meta charset="utf-8"/>
+    <title>Summer Market</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h1>Summer Market</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Title</td>
+            <td>Cost</td>
+
+       </tr>
+       </thead>
+       <tbody>
+
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.title}"></td>
+            <td th:text="${product.cost}"></td>
+ <!--           <td>
+                <a class="btn btn-primary" th:${p.add()}>add product</a>
+            </td>
+            <td>
+                <a class="btn btn-primary" th:${p.remove()}>remove product</a>
+            </td>
+            -->
+        </tr>
+
+        </tbody>
+    </table>
+    <a th:href="@{/}">Product-list</a>
+</div>
+</body>
+</html>
