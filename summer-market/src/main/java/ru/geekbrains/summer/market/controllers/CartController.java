@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.geekbrains.summer.market.model.Product;
-import ru.geekbrains.summer.market.repositories.OrderItemDtoRepository;
-import ru.geekbrains.summer.market.services.OrderService;
 import ru.geekbrains.summer.market.services.ProductService;
 import ru.geekbrains.summer.market.utils.Cart;
 import ru.geekbrains.summer.market.exceptions.ResourceNotFoundException;
@@ -21,8 +19,8 @@ public class CartController {
 
     private final Cart cart;
     private final ProductService productService;
-    private final OrderService orderService;
-    private final OrderItemDtoRepository orderItemDtoRepository;
+//    private final OrderService orderService;
+//    private final OrderItemDtoRepository orderItemDtoRepository;
 
     @GetMapping
     public Cart getCart () {return cart;}
@@ -34,6 +32,7 @@ public class CartController {
             cart.add(product);
         }
     }
+
     @GetMapping("/delete/{productId}")
     public ResponseEntity delete(@PathVariable Long productId) {
         if (!cart.delete(productId)) {
@@ -54,19 +53,5 @@ public class CartController {
             cart.clear(productId);
             return ResponseEntity.ok().build();
     }
-
-//    @Transactional
-//    @GetMapping("/save_order")
-//    public void saveCart() {
-//        orderService.save();
-//    }
-
-//    @Transactional
-//    @GetMapping("/save_del")
-//    public void savedel() {
-//
-//        orderItemDtoRepository.removeOrderItemDtoByOrder(cart.getCartId());
-//
-//    }
 
 }

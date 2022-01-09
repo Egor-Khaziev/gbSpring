@@ -8,14 +8,12 @@ import ru.geekbrains.summer.market.exceptions.ResourceNotFoundException;
 import ru.geekbrains.summer.market.model.Order;
 import ru.geekbrains.summer.market.model.OrderItem;
 import ru.geekbrains.summer.market.model.Product;
-import ru.geekbrains.summer.market.repositories.OrderItemDtoRepository;
 import ru.geekbrains.summer.market.repositories.OrderRepository;
 import ru.geekbrains.summer.market.utils.Cart;
 
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service

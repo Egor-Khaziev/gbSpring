@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -23,7 +25,9 @@ public class Category {
     @Column(name = "title")
     private String title;
 
+
     @OneToMany(mappedBy = "category")
+    @Fetch(FetchMode.JOIN)
     private List<Product> products;
 
     @CreationTimestamp

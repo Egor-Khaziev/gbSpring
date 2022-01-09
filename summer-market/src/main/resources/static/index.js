@@ -110,7 +110,7 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
             .then(function successCallback(response) {
                 if (response.data.token) {
                     $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
-                    $localStorage.summerUser = {username: $scope.user.username, token: response.data.token};
+                    $localStorage.logUser = {username: $scope.user.username, token: response.data.token};
 
                     $scope.user.username = null;
                     $scope.user.password = null;
@@ -122,7 +122,7 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
     };
 
     $scope.clearUser = function () {
-        delete $localStorage.summerUser;
+        delete $localStorage.logUser;
         $http.defaults.headers.common.Authorization = '';
     };
 
@@ -137,15 +137,15 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
     };
 
     $scope.isUserLoggedIn = function () {
-        if ($localStorage.summerUser) {
+        if ($localStorage.logUser) {
             return true;
         } else {
             return false;
         }
     };
 
-    if ($localStorage.summerUser) {
-        $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.summerUser.token;
+    if ($localStorage.logUser) {
+        $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.logUser.token;
         $scope.loadOrders();
     }
 

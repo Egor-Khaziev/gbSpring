@@ -27,6 +27,7 @@ public class Product {
     private BigDecimal price;
 
     @ManyToOne()
+    @JsonIgnore
     @JoinColumn(name = "category_id")
     private Category category;
 

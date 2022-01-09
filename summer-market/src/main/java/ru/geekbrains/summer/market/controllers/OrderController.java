@@ -30,7 +30,7 @@ public class OrderController {
     @PostMapping
     public void createOrder(Principal principal) {
         User user = userService.findByUsername(principal.getName()).get();
-        System.out.println(user.getEmail());
+        System.out.println("+++++++++++++++++++++++ " + user.getUsername() + " create order +++++++++++++++++++++++");
         orderService.save(principal);
     }
 

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.summer.market.dto.ProductDto;
+import ru.geekbrains.summer.market.exceptions.ResourceNotFoundException;
 import ru.geekbrains.summer.market.model.Category;
 import ru.geekbrains.summer.market.model.Product;
 import ru.geekbrains.summer.market.repositories.CategoryRepository;
@@ -18,6 +19,8 @@ public class CategoryController {
 
     @GetMapping("/{id}")
     public Category findById(@PathVariable Long id) {
+        System.out.println(categoryService.findById(id));
         return categoryService.findById(id);
     }
+
 }
